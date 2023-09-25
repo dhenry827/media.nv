@@ -1,0 +1,23 @@
+#movieCont{
+    display: grid;
+    grid-template-columns: .5fr .5fr .5fr .5fr .5fr;
+    grid-template-rows: 35% 35%;
+}
+
+.moviePoster{
+    height: 73%;
+}
+
+.info{
+    margin: 2.5%;
+    text-align: left;
+}
+
+.infoPoster{
+    margin-right: 30px;
+}
+
+.infoTitle {
+    font-size: 225%;   
+    color: red;
+}
