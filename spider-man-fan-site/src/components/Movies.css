@@ -8,7 +8,7 @@
     height: 73%;
 }
 
-.info{
+.infoCont{
     margin: 2.5%;
     text-align: left;
 }
@@ -20,4 +20,8 @@
 .infoTitle {
     font-size: 225%;   
     color: red;
+}
+
+.info{
+    
 }
