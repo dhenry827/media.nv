@@ -47,15 +47,9 @@ const Movies = () => {
           <h4 className='info'>Synopsis:</h4><p>{movieInfo.Plot}</p>
         </div>
       </div>
-      <div id='movieCont'>
-      {movies.map((movie, index) => {
-        return (
-          <div key={index} className='movie'>
-              <img src={movie.Poster} alt="" className='moviePoster'/>
-              <h3><a className={index} href='#' onClick={(e) => {getMovieInfo(movie.imdbID)}}>{movie.Title} </a>({movie.Year})</h3>
-          </div>
-        ) 
-      })}
+
+      <div id='movieListCont'>
+       
       </div>
     </div>
   )
