@@ -1,11 +1,41 @@
-#movieCont{
+/* html{
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+} */
+
+#mainCont {
+    height: 100vh;
+    width: 100vw;
+    padding: 2%;
+}
+
+.movie{
+    margin-bottom: 20%;
+}
+
+#formCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2%;
+}
+
+#searchForm{
+    width: 50%;
+}
+
+#movieListCont{
+    width: 100%;
     display: grid;
-    grid-template-columns: .5fr .5fr .5fr .5fr .5fr;
-    grid-template-rows: 35% 35%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 50% 50%;
 }
 
 .moviePoster{
-    height: 73%;
+    width: 80%;
+    height: auto;
 }
 
 .infoCont{
@@ -22,6 +52,42 @@
     color: red;
 }
 
-.info{
-    
+
+@media (max-width: 641px)  { 
+    #mainCont{
+        width: 100%;
+        margin: 0px;
+        padding: 5%;
+    }
+    #searchForm{
+        width: 70%;
+    }
+
+    #movieListCont{
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        
+    }
+
+    .movie{
+        margin: 5%;
+    }
+
+    .moviePoster{
+        width: 100%;
+    }
+
+    .infoCont {
+        width: 100%;
+        margin: 0px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infoPoster{
+        margin: 0px;
+    }
 }

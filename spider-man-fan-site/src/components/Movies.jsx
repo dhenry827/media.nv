@@ -1,17 +1,26 @@
 import React, {useState, useEffect} from 'react'
-
 import './Movies.css'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+
 
 const Movies = () => {
+  const [search, setSearch] = useState('') 
   const [movies, setMovies] = useState([])
   const [movieInfo, setMovieInfo] = useState({})
   const [hidden, setHidden] = useState(true)
+  const [found, setFound] = useState(false) 
 
-  const getMovies = async() => {
-    let response = await fetch('https://www.omdbapi.com/?s=spider-man&apikey=4ad02d8d')
+  const getMovies = async(movie) => {
+    let response = await fetch(`https://www.omdbapi.com/?s=${movie}&apikey=4ad02d8d`)
     let data = await response.json()
-    console.log(data)
     setMovies(data.Search)
+
+    if(!hidden){
+    setHidden(true)
+    }
+    
   }
 
   const getMovieInfo = async(id) => {
@@ -19,21 +28,40 @@ const Movies = () => {
     let data = await response.json()
     setMovieInfo(data)
     
-    if(hidden){
+    
       setHidden(false)
-    }
+  }
 
-    if(movies[index]){
-      setHidden = true
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    getMovies(search)
   }
 
   useEffect(() => {
-    getMovies()
+    getMovies('spider-man')
   },[]) 
   
   return (
     <div id='mainCont'>
+    <div id='formCont'>
+      <div id='siteHeader'>
+        <h1>Media.NV</h1>
+      </div>
+    <Form id='searchForm' onSubmit={handleSubmit}>
+        <Form.Group className="mb-3"> 
+            <Form.Control 
+              type="text" 
+              placeholder="Search movies here" 
+              value={search} 
+              onChange={(e) => setSearch(e.target.value)} 
+            /> 
+        </Form.Group>
+        <Button variant="primary" type='submit'>
+          Search
+        </Button>
+      </Form>
+    </div>
+    <div id='movieCont'>
       <div className='infoCont' style={{display: hidden ? 'none' : 'flex' }}>
         <div>
           <img className='infoPoster' src={movieInfo.Poster} />
@@ -47,7 +75,7 @@ const Movies = () => {
           <h4 className='info'>Synopsis:</h4><p>{movieInfo.Plot}</p>
         </div>
       </div>
-      <div id='movieCont'>
+      <div id='movieListCont'>
       {movies.map((movie, index) => {
         return (
           <div key={index} className='movie'>
@@ -57,6 +85,7 @@ const Movies = () => {
         ) 
       })}
       </div>
+    </div>
     </div>
   )
 }
